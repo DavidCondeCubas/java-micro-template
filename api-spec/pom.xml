@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>demo</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>api-spec</artifactId>
+
+    <properties>
+        <openapi.plugin.skip>false</openapi.plugin.skip>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator</artifactId>
+            <version>6.2.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.0.Final</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>5.4.0</version>
+                <configuration>
+                    <generatorName>spring</generatorName>
+                    <skip>${openapi.plugin.skip}</skip>
+
+                    <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+
+                    <typeMappings>
+                        <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
+                    </typeMappings>
+                    <importMappings>
+                        <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
+                    </importMappings>
+
+                    <configOptions>
+                        <interfaceOnly>true</interfaceOnly>
+                        <delegatePattern>true</delegatePattern>
+                        <sourceFolder>src/java/main</sourceFolder>
+                        <reactive>false</reactive>
+                        <serializableModel>true</serializableModel>
+                        <useBeanValidation>true</useBeanValidation>
+                        <generateModelTests>true</generateModelTests>
+                        <generateApiTests>true</generateApiTests>
+                        <performBeanValidation>true</performBeanValidation>
+                        <additionalProperties>
+                            <additionalProperty>modelNamePrefix=Dto</additionalProperty>
+                        </additionalProperties>
+                        <useTags>true</useTags>
+                    </configOptions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-rest-api-v1</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/spec.yml</inputSpec>
+                            <skip>false</skip>
+                            <configOptions>
+                                <apiPackage>com.example.demo.application.rest.api</apiPackage>
+                                <modelPackage>com.example.demo.application.rest.model</modelPackage>
+                                <invokerPackage>com.example.demo.application.rest.invokers</invokerPackage>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
