@@ -5,10 +5,12 @@ import com.example.domain.core.models.Pet;
 import com.example.domain.ports.outbounds.PetRepository;
 import com.example.infrastructure.mapper.InfraPetMapper;
 import com.example.infrastructure.repository.InfraPetRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class PetAdapter implements PetRepository {
 
     InfraPetRepository infraPetRepository;

@@ -10,8 +10,4 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class InfraConfiguration {
 
-    @Bean
-    public PetRepository newAdapter(InfraPetRepository infraPetRepository, InfraPetMapper infraPetMapper){
-        return new PetAdapter(infraPetRepository, infraPetMapper);
-    }
 }
