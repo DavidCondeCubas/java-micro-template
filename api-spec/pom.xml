@@ -13,27 +13,13 @@
 
     <properties>
         <openapi.plugin.skip>false</openapi.plugin.skip>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
 
     <dependencies>
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.2.4</version>
-        </dependency>
-        <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>openapi-generator</artifactId>
-            <version>6.2.0</version>
+            <version>7.0.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -42,14 +28,14 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations-jakarta</artifactId>
+            <version>2.2.20</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>8.0.0.Final</version>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.2.10</version>
         </dependency>
     </dependencies>
 
@@ -58,50 +44,26 @@
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>5.4.0</version>
-                <configuration>
-                    <generatorName>spring</generatorName>
-                    <skip>${openapi.plugin.skip}</skip>
-
-                    <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-
-                    <typeMappings>
-                        <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
-                    </typeMappings>
-                    <importMappings>
-                        <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
-                    </importMappings>
-
-                    <configOptions>
-                        <interfaceOnly>true</interfaceOnly>
-                        <delegatePattern>true</delegatePattern>
-                        <sourceFolder>src/java/main</sourceFolder>
-                        <reactive>false</reactive>
-                        <serializableModel>true</serializableModel>
-                        <useBeanValidation>true</useBeanValidation>
-                        <generateModelTests>true</generateModelTests>
-                        <generateApiTests>true</generateApiTests>
-                        <performBeanValidation>true</performBeanValidation>
-                        <additionalProperties>
-                            <additionalProperty>modelNamePrefix=Dto</additionalProperty>
-                        </additionalProperties>
-                        <useTags>true</useTags>
-                    </configOptions>
-                </configuration>
+                <version>6.6.0</version>
                 <executions>
                     <execution>
-                        <id>generate-rest-api-v1</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/spec.yml</inputSpec>
-                            <skip>false</skip>
+                            <inputSpec>${project.basedir}/src/main/resources/contract.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <generateModelTests>false</generateModelTests>
+                            <generateApiTests>false</generateApiTests>
+                            <additionalProperties>
+                                <additionalProperty>modelNameSuffix=Resource</additionalProperty>
+                            </additionalProperties>
                             <configOptions>
-                                <apiPackage>com.example.demo.application.rest.api</apiPackage>
-                                <modelPackage>com.example.demo.application.rest.model</modelPackage>
-                                <invokerPackage>com.example.demo.application.rest.invokers</invokerPackage>
+                                <interfaceOnly>true</interfaceOnly>
+                                <useJakartaEe>true</useJakartaEe>
+                                <apiPackage>com.swango.specification.cyt.rest.api</apiPackage>
+                                <modelPackage>com.swango.specification.cyt.rest.model</modelPackage>
+                                <openApiNullable>false</openApiNullable>
                             </configOptions>
                         </configuration>
                     </execution>
