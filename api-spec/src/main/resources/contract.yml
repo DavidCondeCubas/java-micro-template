@@ -15,7 +15,25 @@ servers:
 tags:
   - name: pets
     description: Operations about pet
+  - name: users
+  - name: auth
+
 paths:
+  /auth/login:
+    get:
+      tags:
+        - auth
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: login successfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+        '401':
+          description: Unauthorized
   /pets:
     get:
       tags:
@@ -34,13 +52,71 @@ paths:
                   $ref: '#/components/schemas/Pet'
         '400':
           description: Invalid status value
+  /users:
+    post:
+      tags:
+        - users
+      summary: Add a new user
+      description: Add a new user
+      operationId: addUser
+      requestBody:
+        description: Create a new user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '201':
+          description: 'Created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+  /users/{userId}:
+    parameters:
+      - name: userId
+        in: path
+        description: ID of user to return
+        required: true
+        schema:
+          type: integer
+          format: int64
+    get:
+      tags:
+        - users
+      summary: Finds usdr by id
+      description: This allow get a user
+      operationId: getUserById
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid status value
 components:
   securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
   schemas:
+    AccessToken:
+      type: object
+      properties:
+        access-token:
+          type: string
+          example: thePet
     Pet:
       required:
         - id
@@ -54,5 +130,37 @@ components:
         name:
           type: string
           example: thePet
+    User:
+      required:
+        - firstname
+        - lastname
+        - password
+        - email
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        firstname:
+          type: string
+          example: david
+        lastname:
+          type: string
+          example: conde
+        password:
+          type: string
+          example: 123456
+        email:
+          type: string
+          example: thePet
+        isAdmin:
+          type: boolean
+          default: false
+          example: false
+        isBlocked:
+          type: boolean
+          default: false
+          example: false
 security:
   - bearerAuth: []

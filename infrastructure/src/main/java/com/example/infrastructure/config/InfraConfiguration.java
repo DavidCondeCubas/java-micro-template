@@ -1,13 +1,16 @@
 package com.example.infrastructure.config;
 
-import com.example.domain.ports.outbounds.PetRepository;
-import com.example.infrastructure.adapters.PetAdapter;
-import com.example.infrastructure.mapper.InfraPetMapper;
-import com.example.infrastructure.repository.InfraPetRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class InfraConfiguration {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }

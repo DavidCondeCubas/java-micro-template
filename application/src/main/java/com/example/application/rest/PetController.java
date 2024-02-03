@@ -5,6 +5,8 @@ import com.example.domain.ports.inbounds.PetService;
 import com.swango.specification.cyt.rest.api.PetsApi;
 import com.swango.specification.cyt.rest.model.PetResource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,4 +28,5 @@ public class PetController implements PetsApi {
     public ResponseEntity<List<PetResource>> getPets() {
         return ResponseEntity.ok(petService.getPets().stream().map(petMapper::petToPetResource).collect(Collectors.toList()));
     }
+
 }

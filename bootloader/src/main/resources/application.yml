@@ -24,5 +24,9 @@ logging:
   level:
     org:
       springframework:
-        security: INFO
+        security: DEBUG
         web: DEBUG
+
+jwt:
+  private.key: classpath:app.key
+  public.key: classpath:app.pub
