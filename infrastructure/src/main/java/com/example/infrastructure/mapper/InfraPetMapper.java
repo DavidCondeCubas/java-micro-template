@@ -7,4 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface InfraPetMapper {
     Pet petEntityToPet(PetEntity petEntity);
+    PetEntity petToPetEntity(Pet pet);
 }

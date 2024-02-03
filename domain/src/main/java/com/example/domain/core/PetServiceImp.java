@@ -10,14 +10,21 @@ import java.util.List;
 @Service
 public class PetServiceImp implements PetService {
 
-    PetRepository repositoryTest;
+    PetRepository petRespository;
 
     public PetServiceImp(PetRepository repositoryTest) {
-        this.repositoryTest = repositoryTest;
+        this.petRespository = repositoryTest;
     }
 
     @Override
     public List<Pet> getPets() {
-        return repositoryTest.getPets();
+
+        return petRespository.getPets();
+       // throw new RuntimeException("Error en el sistema");
+    }
+
+    @Override
+    public Pet addPet(Pet pet) {
+        return petRespository.savePet(pet);
     }
 }

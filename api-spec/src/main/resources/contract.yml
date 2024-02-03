@@ -34,6 +34,28 @@ paths:
                   $ref: '#/components/schemas/Pet'
         '400':
           description: Invalid status value
+    post:
+      tags:
+        - pets
+      summary: Add a new pet to the store
+      description: Add a new pet to the store
+      operationId: addPet
+      requestBody:
+        description: Create a new pet in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
+      responses:
+        '201':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '405':
+          description: Invalid input
 components:
   securitySchemes:
     bearerAuth:
@@ -50,6 +72,7 @@ components:
         id:
           type: integer
           format: int64
+          minimum: 100
           example: 10
         name:
           type: string

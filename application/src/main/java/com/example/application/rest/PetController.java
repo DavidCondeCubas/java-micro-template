@@ -24,6 +24,20 @@ public class PetController implements PetsApi {
 
     @Override
     public ResponseEntity<List<PetResource>> getPets() {
-        return ResponseEntity.ok(petService.getPets().stream().map(petMapper::petToPetResource).collect(Collectors.toList()));
+
+        return ResponseEntity.ok(
+                petService
+                        .getPets()
+                        .stream()
+                        .map(petMapper::petToPetResource)
+                        .collect(Collectors.toList()));
+    }
+
+    @Override
+    public ResponseEntity<PetResource> addPet(PetResource petResource) {
+
+        return ResponseEntity.ok(
+                petMapper.petToPetResource(petService.addPet(petMapper.petResourceToPet(petResource)))
+        );
     }
 }
