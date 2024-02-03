@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "61cdd0e8-edb7-45ea-b402-94a94cbf2872",
+		"name": "Java Template",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10053644"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user@user.es",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9099/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9099",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pets",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoidXNlckB1c2VyLmVzIiwiZXhwIjoxNzA3MDEzNzA5LCJpYXQiOjE3MDY5Nzc3MDksInNjb3BlIjoiVVNFUl9ST0xFIn0.eR-UfyOGsCeRYznoU0CQXxJTjRgJ_0umIxOQ0r6gnp9XWxl4j4CItrryFBrUpM-OV9IBubfyibQPIqgnLvmPk-0c6yov_ZYaTZh2Jx5lxfb0WaeIKZmpebDlvgu6wCEwa1o7uVXrz-ozUUzHLS5ciyWQM2MT16PJ2jY7b3Mr6jdrQsIZ6fucCTzlNY2MCfZj1hFbAxJsPVC_K1gWTEHLk4LkEN0nSzdAn7WpE6v-M_P3XGR2cdXJVOfr0x4UyGp3H7CqPMZDFH70Ss6q_pw958JahbXfIYNbKWP-MJnHO6ccx2xzuGyzzTdbxMc9m7qNG2KfhO3YJRV-MVtaM0gy3g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9099/pets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9099",
+					"path": [
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoidXNlckB1c2VyLmVzIiwiZXhwIjoxNzA3MDEzNzA5LCJpYXQiOjE3MDY5Nzc3MDksInNjb3BlIjoiVVNFUl9ST0xFIn0.eR-UfyOGsCeRYznoU0CQXxJTjRgJ_0umIxOQ0r6gnp9XWxl4j4CItrryFBrUpM-OV9IBubfyibQPIqgnLvmPk-0c6yov_ZYaTZh2Jx5lxfb0WaeIKZmpebDlvgu6wCEwa1o7uVXrz-ozUUzHLS5ciyWQM2MT16PJ2jY7b3Mr6jdrQsIZ6fucCTzlNY2MCfZj1hFbAxJsPVC_K1gWTEHLk4LkEN0nSzdAn7WpE6v-M_P3XGR2cdXJVOfr0x4UyGp3H7CqPMZDFH70Ss6q_pw958JahbXfIYNbKWP-MJnHO6ccx2xzuGyzzTdbxMc9m7qNG2KfhO3YJRV-MVtaM0gy3g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9099/users/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9099",
+					"path": [
+						"users",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoidXNlckB1c2VyLmVzIiwiZXhwIjoxNzA3MDEzNzA5LCJpYXQiOjE3MDY5Nzc3MDksInNjb3BlIjoiVVNFUl9ST0xFIn0.eR-UfyOGsCeRYznoU0CQXxJTjRgJ_0umIxOQ0r6gnp9XWxl4j4CItrryFBrUpM-OV9IBubfyibQPIqgnLvmPk-0c6yov_ZYaTZh2Jx5lxfb0WaeIKZmpebDlvgu6wCEwa1o7uVXrz-ozUUzHLS5ciyWQM2MT16PJ2jY7b3Mr6jdrQsIZ6fucCTzlNY2MCfZj1hFbAxJsPVC_K1gWTEHLk4LkEN0nSzdAn7WpE6v-M_P3XGR2cdXJVOfr0x4UyGp3H7CqPMZDFH70Ss6q_pw958JahbXfIYNbKWP-MJnHO6ccx2xzuGyzzTdbxMc9m7qNG2KfhO3YJRV-MVtaM0gy3g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstname\": \"david\",\n  \"lastname\": \"conde\",\n  \"password\": \"123456\",\n  \"email\": \"thePet\",\n  \"isAdmin\": false,\n  \"isBlocked\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9099/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9099",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
